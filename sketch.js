@@ -4,13 +4,12 @@ let playButton, stopButton, answerButton, originalButton;
 let player, fileName, fSize;
 
 function preload() {
-  sound1 = loadSound('assets/Eno_DigitalClip_6dB.mp3');
-  sound2 = loadSound('assets/Eno_DigitalClip_12dB.mp3');
-  sound3 = loadSound('assets/Eno_DigitalClip_18dB.mp3');
-  sound4 = loadSound('assets/Eno_DigitalClip_24dB.mp3');
+  sound1 = loadSound('assets/Hoff_BitDepth_4-bit.mp3');
+  sound2 = loadSound('assets/Hoff_BitDepth_5-bit.mp3');
+  sound3 = loadSound('assets/Hoff_BitDepth_8-bit.mp3');
 
   // 🔊 original file (NOT part of random pool)
-  originalSound = loadSound('assets/EnoOriginal.mp3');
+  originalSound = loadSound('assets/HoffOriginal.mp3');
 }
 
 function setup(){  
@@ -24,13 +23,13 @@ function setup(){
   // Title
   let titleSize = fSize / 2;
   textSize(titleSize);
-  text("Digital Clipping Practice", width / 2, height / 9);
+  text("Bit Depth Reduction Practice", width / 2, height / 9);
 
   // Subtitle
   let subtitleSize = fSize / 4;
   textSize(subtitleSize);
   let lineSpacing = subtitleSize * 1.5;
-  text("+6, +12, +18, +24", width / 2, height / 9 + lineSpacing);
+  text("8-bit, 5-bit, 4-bit", width / 2, height / 9 + lineSpacing);
 
   // choose first random sound
   chooseSound();
@@ -109,19 +108,17 @@ let secondLastChoice = -1;
 function chooseSound() {
   let choice;
   do {
-    choice = int(random(4));  // 0–3
+    choice = int(random(3));  // 0–3
   } while (choice === lastChoice && choice === secondLastChoice);
 
   secondLastChoice = lastChoice;
   lastChoice = choice;
 
   if (choice === 0) {
-    player = sound1; fileName = "+6 Digital Clipping";
+    player = sound1; fileName = "4-bit";
   } else if (choice === 1) {
-    player = sound2; fileName = "+12 Digital Clipping";
+    player = sound2; fileName = "5-bit";
   } else if (choice === 2) {
-    player = sound3; fileName = "+18 Digital Clipping";
-  } else if (choice === 3) {
-    player = sound4; fileName = "+24 Digital Clipping";
+    player = sound3; fileName = "8-bit";
   }
 }
